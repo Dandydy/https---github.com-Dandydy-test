@@ -9,7 +9,7 @@ char* vector(){
 
     while((ch = getchar()) != '\n' && ch != EOF){
         if (len >= size){
-            size = (size == 0) ? 2 : size*2;
+            size = (size == 0) ? 1 : size + 1;
             line = realloc(line, size);
             if(line == NULL){
                 perror("Не удалось выделить");
@@ -20,13 +20,13 @@ char* vector(){
     }
 
     if(line){
-        len++;
-        line = realloc(line, size + 1);
-        if(line == NULL){
-                perror("Не удалось выделить");
-                return NULL;
-            }
-        line[len] = '\0';
+         size++;
+         line = realloc(line, size);
+         if(line == NULL){
+                 perror("Не удалось выделить");
+                 return NULL;
+             }
+         line[len] = '\0';
         return line;
     }
     else return NULL;
